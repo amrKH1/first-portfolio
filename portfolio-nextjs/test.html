@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#007bff',
+                            dark: '#0056b3',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Test if Tailwind works -->
+    <div class="bg-red-500 text-white p-4 rounded-lg m-4">
+        <h1 class="text-2xl font-bold">🎯 Tailwind CSS Test</h1>
+        <p>If you see this styled (red background, white text), Tailwind works!</p>
+    </div>
+
+    <!-- Navigation Test -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold text-primary">Amr</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">About</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">Skills</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">Projects</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section Test -->
+    <section class="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center">
+        <div class="max-w-6xl mx-auto px-4 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-gray-800">
+                        Hi, I'm <span class="text-primary">Amr</span>
+                    </h1>
+                    <h2 class="text-xl md:text-2xl text-gray-600 mb-6">
+                        Web & App Developer
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        I create exceptional digital experiences through innovative web applications 
+                        and mobile solutions.
+                    </p>
+                    <div class="flex gap-4 justify-center lg:justify-start">
+                        <button class="bg-primary text-white px-8 py-3 rounded-full hover:bg-primary-dark transition-colors">
+                            View Projects
+                        </button>
+                        <button class="border-2 border-primary text-primary px-8 py-3 rounded-full hover:bg-primary hover:text-white transition-colors">
+                            Contact Me
+                        </button>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-80 h-80 bg-gradient-to-br from-primary/20 to-primary-dark/20 rounded-full flex items-center justify-center">
+                        <div class="text-center text-gray-600">
+                            <div class="text-6xl mb-4">👨‍💻</div>
+                            <div class="text-lg font-medium">Professional Developer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Test -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-50 p-8 rounded-3xl hover:shadow-lg transition-shadow">
+                    <div class="text-4xl mb-4">🌐</div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Frontend</h3>
+                    <div class="space-y-2">
+                        <div class="bg-white p-3 rounded-lg text-sm">React</div>
+                        <div class="bg-white p-3 rounded-lg text-sm">Next.js</div>
+                        <div class="bg-white p-3 rounded-lg text-sm">TypeScript</div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-3xl hover:shadow-lg transition-shadow">
+                    <div class="text-4xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Backend</h3>
+                    <div class="space-y-2">
+                        <div class="bg-white p-3 rounded-lg text-sm">Node.js</div>
+                        <div class="bg-white p-3 rounded-lg text-sm">Python</div>
+                        <div class="bg-white p-3 rounded-lg text-sm">MongoDB</div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-3xl hover:shadow-lg transition-shadow">
+                    <div class="text-4xl mb-4">📱</div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Mobile</h3>
+                    <div class="space-y-2">
+                        <div class="bg-white p-3 rounded-lg text-sm">React Native</div>
+                        <div class="bg-white p-3 rounded-lg text-sm">Flutter</div>
+                        <div class="bg-white p-3 rounded-lg text-sm">iOS/Android</div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-3xl hover:shadow-lg transition-shadow">
+                    <div class="text-4xl mb-4">🛠️</div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Tools</h3>
+                    <div class="space-y-2">
+                        <div class="bg-white p-3 rounded-lg text-sm">Git</div>
+                        <div class="bg-white p-3 rounded-lg text-sm">Docker</div>
+                        <div class="bg-white p-3 rounded-lg text-sm">AWS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        console.log('✅ Test page loaded successfully!');
+        console.log('If you see styled content above, Tailwind CSS is working properly.');
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.pid
+*.pid.lock
+
+# Logs / temp
+logs/
+*.log
+*.tmp
+*.swp
+.tmp/
+.cache/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# Environment secrets (ignore anywhere in the repo)
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+**/.env.*.local
+**/*.env
+# keep examples
+!.env.example
+!**/.env.example
+
+# Next.js frontend
+portfolio-nextjs/.next/
+portfolio-nextjs/out/
+portfolio-nextjs/.vercel/
+portfolio-nextjs/.turbo/
+portfolio-nextjs/.cache/
+portfolio-nextjs/coverage/
+
+# Backend
+portfolio-backend/uploads/
+portfolio-backend/logs/
+portfolio-backend/coverage/
+portfolio-backend/tmp/
+
+# Generic build outputs
+dist/
+build/
+coverage/
+
+# Keep uploads folder if you add a placeholder later
+!portfolio-backend/uploads/.gitkeep
+
