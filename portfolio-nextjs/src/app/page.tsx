@@ -1,48 +1,48 @@
-'use client'
+import dynamic from 'next/dynamic'
 
-import { useEffect } from 'react'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-
-// Import components
+// Above-the-fold: load immediately
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
-import About from '@/components/About'
-import Skills from '@/components/Skills'
-import Projects from '@/components/Projects'
-import Experience from '@/components/Experience'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
 import DynamicMetadata from '@/components/DynamicMetadata'
 
+// Below-the-fold: code-split with lightweight skeletons
+const FeaturedWork = dynamic(() => import('@/components/FeaturedWork'), {
+  loading: () => <div className="h-[500px] bg-gray-50 dark:bg-gray-950 animate-pulse" />,
+})
+const About = dynamic(() => import('@/components/About'), {
+  loading: () => <div className="h-[600px] bg-gray-50 dark:bg-gray-950 animate-pulse" />,
+})
+const Skills = dynamic(() => import('@/components/Skills'), {
+  loading: () => <div className="h-[400px] bg-gray-50 dark:bg-gray-950 animate-pulse" />,
+})
+const HowIWork = dynamic(() => import('@/components/HowIWork'), {
+  loading: () => <div className="h-[500px] bg-gray-50 dark:bg-gray-950 animate-pulse" />,
+})
+const Pricing = dynamic(() => import('@/components/Pricing'), {
+  loading: () => <div className="h-[600px] bg-gray-50 dark:bg-gray-950 animate-pulse" />,
+})
+const Contact = dynamic(() => import('@/components/Contact'), {
+  loading: () => <div className="h-[400px] bg-gray-50 dark:bg-gray-950 animate-pulse" />,
+})
+const Footer = dynamic(() => import('@/components/Footer'), {
+  loading: () => <div className="h-[200px] bg-gray-50 dark:bg-gray-950 animate-pulse" />,
+})
+
 export default function Home() {
-  useEffect(() => {
-    // Initialize AOS (Animate On Scroll) with smoother settings
-    AOS.init({
-      duration: 1200,
-      easing: 'ease-out-cubic',
-      once: true,
-      mirror: false,
-      offset: 100,
-      delay: 100
-    })
-
-    // Cleanup function
-    return () => {
-      AOS.refresh()
-    }
-  }, [])
-
   return (
     <>
       <DynamicMetadata />
+
       <Navigation />
       <main id="main-content" className="min-h-screen">
         <Hero />
+
+        {/* Below-the-fold sections — lazy loaded */}
+        <FeaturedWork />
         <About />
         <Skills />
-        <Projects />
-        <Experience />
+        <HowIWork />
+        <Pricing />
         <Contact />
       </main>
       <Footer />

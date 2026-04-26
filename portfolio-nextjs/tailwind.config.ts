@@ -10,14 +10,34 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#312e81',
-          dark: '#1e1b4b',
-          light: '#4338ca',
+          DEFAULT: '#000000',
+          dark: '#000000',
+          light: '#333333',
+          50: '#ffffff',
+          100: '#f8f8f8',
+          200: '#e8e8e8',
+          300: '#d8d8d8',
+          400: '#888888',
+          500: '#666666',
+          600: '#444444',
+          700: '#333333',
+          800: '#222222',
+          900: '#000000',
         },
         secondary: {
-          DEFAULT: '#0891b2',
-          dark: '#0e7490',
-          light: '#06b6d4',
+          DEFAULT: '#ffffff',
+          dark: '#f8f8f8',
+          light: '#ffffff',
+          50: '#000000',
+          100: '#222222',
+          200: '#333333',
+          300: '#444444',
+          400: '#666666',
+          500: '#888888',
+          600: '#aaaaaa',
+          700: '#cccccc',
+          800: '#eeeeee',
+          900: '#ffffff',
         },
         gray: {
           50: '#f9fafb',
@@ -33,6 +53,18 @@ module.exports = {
           light: '#f8f9fa',
           medium: '#666666',
           dark: '#333333',
+        },
+        // True black theme colors
+        black: {
+          DEFAULT: '#000000',
+          soft: '#0a0a0a',
+          medium: '#111111',
+          card: '#1a1a1a',
+        },
+        white: {
+          DEFAULT: '#ffffff',
+          soft: '#f8fafc',
+          medium: '#f1f5f9',
         }
       },
       fontFamily: {
@@ -44,6 +76,14 @@ module.exports = {
         'float': 'float 20s ease-in-out infinite',
         'rotate': 'rotate 3s linear infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'fade-in': 'fadeIn 0.6s ease-out',
+        'fade-in-up': 'fadeInUp 0.6s ease-out',
+        'fade-in-down': 'fadeInDown 0.6s ease-out',
+        'scale-in': 'scaleIn 0.4s ease-out',
+        'slide-in-left': 'slideInLeft 0.6s ease-out',
+        'slide-in-right': 'slideInRight 0.6s ease-out',
+        'marquee': 'marquee 25s linear infinite',
+        'marquee-reverse': 'marquee-reverse 25s linear infinite',
       },
       keyframes: {
         float: {
@@ -53,7 +93,39 @@ module.exports = {
         rotate: {
           from: { transform: 'rotate(0deg)' },
           to: { transform: 'rotate(360deg)' },
-        }
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeInDown: {
+          '0%': { opacity: '0', transform: 'translateY(-30px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        scaleIn: {
+          '0%': { opacity: '0', transform: 'scale(0.9)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        slideInLeft: {
+          '0%': { opacity: '0', transform: 'translateX(-30px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        slideInRight: {
+          '0%': { opacity: '0', transform: 'translateX(30px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        'marquee-reverse': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
       },
       transitionTimingFunction: {
         'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
@@ -64,6 +136,11 @@ module.exports = {
         'medium': '0 8px 30px rgba(0, 0, 0, 0.12)',
         'heavy': '0 20px 60px rgba(0, 0, 0, 0.15)',
         'glow': '0 0 20px rgba(49, 46, 129, 0.3)',
+        'glow-secondary': '0 0 20px rgba(8, 145, 178, 0.3)',
+        'card': '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)',
+        'card-hover': '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06)',
+        'button': '0 2px 4px rgba(0, 0, 0, 0.1)',
+        'button-hover': '0 4px 8px rgba(0, 0, 0, 0.15)',
       },
       spacing: {
         '13': '3.25rem',
@@ -82,5 +159,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }

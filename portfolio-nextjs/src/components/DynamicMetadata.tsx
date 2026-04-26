@@ -48,21 +48,7 @@ export default function DynamicMetadata() {
     if (twitterDescription) {
       twitterDescription.setAttribute('content', t('meta.description'))
     }
-    
-    // Update structured data
-    const structuredDataScript = document.querySelector('script[type="application/ld+json"]')
-    if (structuredDataScript) {
-      try {
-        const data = JSON.parse(structuredDataScript.textContent || '{}')
-        data.name = t('hero.name')
-        data.jobTitle = t('hero.title1')
-        data.description = t('meta.description')
-        structuredDataScript.textContent = JSON.stringify(data)
-      } catch (e) {
-        console.warn('Failed to update structured data:', e)
-      }
-    }
-    
+
   }, [language, t])
 
   return null // This component doesn't render anything

@@ -2,70 +2,36 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
-import ThemeToggle from './ThemeToggle'
-import LanguageToggle from './LanguageToggle'
-import { useLanguage } from '@/contexts/LanguageContext'
+import Image from 'next/image'
+import { Menu, X, Sun, Moon } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useTheme } from 'next-themes'
 
 const Navigation = () => {
-  const { t, isRTL, isLoading } = useLanguage()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
+  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   const navItems = [
-    { href: '#home', label: t('nav.home') },
-    { href: '#about', label: t('nav.about') },
-    { href: '#skills', label: t('nav.skills') },
-    { href: '#projects', label: t('nav.projects') },
-    { href: '#experience', label: t('nav.experience') },
-    { href: '#contact', label: t('nav.contact') },
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/work', label: 'Work' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/resources', label: 'Resources' },
   ]
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
-      
-      // Update active section based on scroll position
-      const sections = navItems.map(item => item.href.substring(1))
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 200 && rect.bottom >= 200
-        }
-        return false
-      })
-      
-      if (currentSection) {
-        setActiveSection(currentSection)
-      }
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const handleNavClick = (href: string) => {
-    // Handle external links
-    if (href.startsWith('/')) {
-      window.location.href = href
-      return
-    }
-
-    const targetId = href.substring(1)
-    const targetElement = document.getElementById(targetId)
-
-    if (targetElement) {
-      const offsetTop = targetElement.offsetTop - 80
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      })
-    }
-
-    setIsMobileMenuOpen(false)
-  }
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -73,120 +39,160 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Skip to main content link */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-white px-4 py-2 rounded-md z-[60] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      {/* Clean Navigation - Black & White System */}
+      <motion.nav 
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          isScrolled ? 'bg-white/95 dark:bg-black/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {t('nav.skipToMain')}
-      </a>
-
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-400 ${
-        isScrolled
-          ? 'bg-white/95 dark:bg-black/95 backdrop-blur-xl shadow-light dark:shadow-[0_2px_12px_rgba(0,0,0,0.8)] border-b border-gray-200/70 dark:border-white/10'
-          : 'bg-white/90 dark:bg-black/90 backdrop-blur-xl border-b border-gray-200/50 dark:border-white/10'
-      }`}>
-      <div className="max-w-6xl mx-auto px-5">
-        <div className="flex justify-between items-center h-[70px]">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
-          <div className="nav-logo">
-            <Link 
-              href="#home" 
-              className="text-2xl font-bold text-gray-dark dark:text-gray-100 hover:text-primary hover:scale-105 transition-all duration-400"
-              onClick={(e) => {
-                e.preventDefault()
-                handleNavClick('#home')
-              }}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Link
+              href="/"
+              className="flex items-center group"
             >
-              {t('hero.name')}<span className="text-primary">.</span>
+              {/* Light theme logo */}
+              <Image
+                src="/assets/light-theme.png"
+                alt="Amr Khaled"
+                width={40}
+                height={40}
+                className="block dark:hidden group-hover:rotate-12 transition-all duration-300"
+                priority
+              />
+              {/* Dark theme logo */}
+              <Image
+                src="/assets/dark-theme.png"
+                alt="Amr Khaled"
+                width={40}
+                height={40}
+                className="hidden dark:block group-hover:rotate-12 transition-all duration-300"
+                priority
+              />
             </Link>
-          </div>
+          </motion.div>
 
           {/* Desktop Navigation */}
-          <ul className={`hidden md:flex ${isRTL ? 'space-x-reverse' : ''} space-x-8`}>
-            {navItems.map((item) => (
-              <li key={item.href}>
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item, index) => (
+              <motion.div
+                key={item.href}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 + index * 0.1, ease: "easeOut" }}
+              >
                 <Link
                   href={item.href}
-                  className={`relative font-medium transition-all duration-400 py-2 px-0 hover:text-primary ${
-                    activeSection === item.href.substring(1)
-                      ? 'text-primary'
-                      : 'text-gray-dark dark:text-gray-200'
-                  }`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleNavClick(item.href)
-                  }}
+                  className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-all duration-300 relative group"
                 >
                   {item.label}
-                  <span className={`absolute bottom-[-5px] left-1/2 transform -translate-x-1/2 h-[3px] bg-gradient-to-r from-primary to-primary-dark rounded-full transition-all duration-400 ${
-                    activeSection === item.href.substring(1)
-                      ? 'w-full'
-                      : 'w-0 hover:w-full'
-                  }`} />
-                  <span className="absolute top-0 left-0 w-full h-full bg-primary/10 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10" />
+                  <motion.div 
+                    className="absolute -bottom-1 left-0 h-0.5 bg-black dark:bg-white"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  />
                 </Link>
-              </li>
+              </motion.div>
             ))}
+          </div>
 
-          </ul>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={toggleMobileMenu}
-              className={`flex flex-col cursor-pointer transition-all duration-300 ${
-                isMobileMenuOpen ? 'active' : ''
-              }`}
-              aria-label="Toggle mobile menu"
+          {/* Right side - Theme Switcher & Mobile Menu */}
+          <div className="flex items-center space-x-2">
+            {/* Theme Switcher */}
+            <motion.button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="p-2 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-all duration-300 rounded-md hover:bg-black/5 dark:hover:bg-white/5"
+              aria-label="Toggle theme"
+              whileHover={{ scale: 1.1, rotate: 180 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ duration: 0.3 }}
             >
-              <span className={`w-6 h-[3px] bg-gray-dark dark:bg-gray-200 rounded-sm transition-all duration-300 mb-[3px] ${
-                isMobileMenuOpen ? 'transform rotate-45 translate-y-[6px]' : ''
-              }`} />
-              <span className={`w-6 h-[3px] bg-gray-dark dark:bg-gray-200 rounded-sm transition-all duration-300 mb-[3px] ${
-                isMobileMenuOpen ? 'opacity-0' : ''
-              }`} />
-              <span className={`w-6 h-[3px] bg-gray-dark dark:bg-gray-200 rounded-sm transition-all duration-300 ${
-                isMobileMenuOpen ? 'transform -rotate-45 -translate-y-[6px]' : ''
-              }`} />
-            </button>
-          </div>
-          {/* Right-side controls */}
-          <div className={`flex items-center ${isRTL ? 'space-x-reverse' : ''} gap-3`}>
-            <LanguageToggle />
-            <ThemeToggle />
-          </div>
-        </div>
+              {mounted && theme === 'dark' ? (
+                <Sun className="w-5 h-5" />
+              ) : mounted && theme === 'light' ? (
+                <Moon className="w-5 h-5" />
+              ) : (
+                <div className="w-5 h-5" />
+              )}
+            </motion.button>
 
-        {/* Mobile Navigation Menu */}
-        <div className={`md:hidden absolute top-full left-0 w-full transition-all duration-400 overflow-hidden ${
-          isMobileMenuOpen
-            ? 'max-h-96 opacity-100'
-            : 'max-h-0 opacity-0'
-        }`}>
-          <ul className="py-4 space-y-2 bg-white/98 dark:bg-gray-900/95 backdrop-blur-md shadow-light dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] border-t border-black/10 dark:border-white/10">
-            {navItems.map((item) => (
-              <li key={item.href} className="text-center">
-                <Link
-                  href={item.href}
-                  className={`block py-3 px-6 font-medium transition-all duration-300 hover:text-primary hover:bg-primary/5 dark:hover:bg-primary/10 rounded-lg mx-4 ${
-                    activeSection === item.href.substring(1)
-                      ? 'text-primary bg-primary/10 dark:bg-primary/15'
-                      : 'text-gray-dark dark:text-gray-200'
-                  }`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleNavClick(item.href)
-                  }}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900"
+                aria-label="Toggle mobile menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
+      </motion.nav>
+
+      {/* Mobile Menu - Clean 3-Color Design */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-x-0 top-16 z-40 mx-auto max-w-md px-6 md:hidden"
+          >
+            <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg overflow-hidden">
+              <div className="p-6 space-y-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block text-base font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-200 py-1"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
+                  <button
+                    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-900 text-black dark:text-white rounded-md text-sm font-medium hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200"
+                  >
+                    {mounted && theme === 'dark' ? (
+                      <>
+                        <Sun className="w-4 h-4" />
+                        Light Mode
+                      </>
+                    ) : mounted && theme === 'light' ? (
+                      <>
+                        <Moon className="w-4 h-4" />
+                        Dark Mode
+                      </>
+                    ) : (
+                      <>
+                        <div className="w-4 h-4" />
+                        Loading...
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

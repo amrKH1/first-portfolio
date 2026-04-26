@@ -1,0 +1,76 @@
+---
+title: "Creating Stunning Animations with Framer Motion"
+description: "Learn how to create beautiful, performant animations in React applications using Framer Motion's declarative API."
+date: "2024-01-05"
+category: "tutorial"
+tags: ["Animation", "React", "Framer Motion"]
+image: "/assets/placeholder-01.svg"
+featured: false
+---
+
+## Introduction
+
+Animation is a crucial part of modern web design. Framer Motion provides a declarative, powerful API for creating animations in React that are both beautiful and performant.
+
+## Getting Started
+
+Install Framer Motion in your project:
+
+```bash
+npm install framer-motion
+```
+
+## Basic Animations
+
+The simplest way to animate a component is with the `motion` component:
+
+```tsx
+import { motion } from 'framer-motion'
+
+function FadeIn() {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      Hello, World!
+    </motion.div>
+  )
+}
+```
+
+## Gesture Animations
+
+Framer Motion makes it easy to add gesture-based animations:
+
+```tsx
+<motion.button
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  whileFocus={{ boxShadow: '0 0 0 3px rgba(0,0,0,0.2)' }}
+>
+  Click me
+</motion.button>
+```
+
+## Layout Animations
+
+One of Framer Motion's most powerful features is layout animations. When a component's layout changes, Framer Motion can automatically animate the transition:
+
+```tsx
+<motion.div layout style={{ borderRadius: isOpen ? 20 : 8 }}>
+  {isOpen && <ExpandedContent />}
+</motion.div>
+```
+
+## Performance Tips
+
+- Use `layout` prop sparingly — it can be expensive
+- Prefer `transform` and `opacity` for animations
+- Use `will-change` CSS property for complex animations
+- Leverage `LazyMotion` for code-splitting animation features
+
+## Conclusion
+
+Framer Motion abstracts away the complexity of Web Animations API while giving you fine-grained control. It's the perfect tool for adding polish to your React applications.

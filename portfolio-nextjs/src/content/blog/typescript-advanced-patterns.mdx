@@ -1,0 +1,68 @@
+---
+title: "Mastering TypeScript: Advanced Patterns"
+description: "Deep dive into advanced TypeScript patterns including generics, conditional types, and utility types for building type-safe applications."
+date: "2024-01-08"
+category: "development"
+tags: ["TypeScript", "JavaScript", "Programming"]
+image: "/assets/placeholder-03.svg"
+featured: false
+---
+
+## Introduction
+
+TypeScript has become the de facto standard for building large-scale JavaScript applications. In this article, we'll explore advanced patterns that will take your type-level programming skills to the next level.
+
+## Generics Deep Dive
+
+Generics are the foundation of reusable, type-safe code in TypeScript. They allow you to write functions and components that work with any type while maintaining type safety.
+
+```ts
+function createArray<T>(item: T, count: number): T[] {
+  return Array(count).fill(item)
+}
+
+const numbers = createArray(42, 3)     // number[]
+const strings = createArray('hi', 3)   // string[]
+```
+
+### Generic Constraints
+
+Sometimes you need to restrict the types that can be used with a generic:
+
+```ts
+interface HasLength {
+  length: number
+}
+
+function logLength<T extends HasLength>(arg: T): T {
+  console.log(arg.length)
+  return arg
+}
+```
+
+## Conditional Types
+
+Conditional types allow you to create types that depend on a condition, similar to ternary operators in JavaScript:
+
+```ts
+type IsString<T> = T extends string ? true : false
+
+type A = IsString<'hello'>  // true
+type B = IsString<123>      // false
+```
+
+## Utility Types You Should Know
+
+TypeScript provides several built-in utility types:
+
+| Utility | Purpose |
+|---------|---------|
+| `Partial<T>` | Makes all properties optional |
+| `Required<T>` | Makes all properties required |
+| `Pick<T, K>` | Selects a subset of properties |
+| `Omit<T, K>` | Removes a subset of properties |
+| `Record<K, T>` | Creates an object type with keys K and values T |
+
+## Conclusion
+
+Mastering these advanced TypeScript patterns will help you write more robust, maintainable, and self-documenting code in your projects.
