@@ -7,7 +7,6 @@ import { Github, Linkedin, Twitter, Mail, ArrowDown } from 'lucide-react'
 import { motion, useReducedMotion, useInView } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 import ContactSheet from '@/components/ContactSheet'
-import { useTheme } from 'next-themes'
 import dynamic from 'next/dynamic'
 
 const ThreeDBackground = dynamic(() => import('./ThreeDBackground'), {
@@ -17,7 +16,6 @@ const ThreeDBackground = dynamic(() => import('./ThreeDBackground'), {
 
 const Hero = () => {
   const { t, isRTL } = useLanguage()
-  const { theme } = useTheme()
   const heroRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const reduceMotion = useReducedMotion()
@@ -28,18 +26,6 @@ const Hero = () => {
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  // إعادة تشغيل الفيديو عند تغيير الثيم لضمان عمله بشكل صحيح
-  useEffect(() => {
-    if (mounted && videoRef.current) {
-      // فقط إعادة التشغيل إذا كان الفيديو متوقف
-      if (videoRef.current.paused) {
-        videoRef.current.play().catch(err => {
-          // Video autoplay prevented — expected on some browsers
-        });
-      }
-    }
-  }, [theme, mounted])
 
   const socialLinks = [
     { href: 'https://github.com/amrkhaled', icon: Github, label: 'GitHub' },
@@ -70,19 +56,13 @@ const Hero = () => {
             >
               <video
                 ref={videoRef}
-                className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
-                style={{ 
+                className="absolute inset-0 w-full h-full object-cover invert-0 dark:invert"
+                style={{
                   pointerEvents: 'none',
                   userSelect: 'none',
                   WebkitUserSelect: 'none',
                   msUserSelect: 'none',
-                  MozUserSelect: 'none',
-                  // تطبيق الفلتر ديناميكياً حسب الثيم - أفضل حل للأداء
-                  filter: theme === 'dark' 
-                    ? 'invert(100%) contrast(2) brightness(0)' 
-                    : 'none',
-                  // انتقال سلس للفلتر
-                  transition: 'filter 0.7s ease-in-out'
+                  MozUserSelect: 'none'
                 }}
                 autoPlay
                 muted
@@ -92,7 +72,6 @@ const Hero = () => {
                 controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
                 disablePictureInPicture
                 disableRemotePlayback
-                key="video-background"
                 src="/assets/hero-video.mp4"
                 onContextMenu={(e) => {
                   e.preventDefault();
@@ -129,13 +108,9 @@ const Hero = () => {
               />
             </div>
             {/* Fallback gradient background */}
-            <div 
-              className={`absolute inset-0 transition-all duration-700 ${
-                theme === 'dark' 
-                  ? 'bg-gradient-to-br from-gray-900 via-black to-gray-950' 
-                  : 'bg-gradient-to-br from-gray-100 via-white to-gray-50'
-              }`} 
-              style={{ zIndex: -1 }} 
+            <div
+              className="absolute inset-0 transition-all duration-700 bg-gradient-to-br from-gray-100 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-950"
+              style={{ zIndex: -1 }}
             />
           </div>
         )}

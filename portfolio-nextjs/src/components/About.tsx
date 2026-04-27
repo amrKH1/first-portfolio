@@ -143,9 +143,9 @@ const About = () => {
         </motion.div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* About Overview */}
-        <div className="relative py-6 lg:py-12">
+        <div className="relative py-4 lg:py-8">
           <div className="pointer-events-none absolute -left-24 top-28 hidden h-52 w-52 lg:block">
             {[...Array(16)].map((_, i) => (
               <span
@@ -177,7 +177,7 @@ const About = () => {
             ))}
           </div>
 
-          <div className="grid gap-10 lg:grid-cols-[1.18fr_0.92fr] lg:gap-16">
+          <div className="grid gap-8 lg:grid-cols-[1.18fr_0.92fr] lg:gap-12">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -191,13 +191,13 @@ const About = () => {
               <h1 className="max-w-3xl text-4xl font-bold leading-tight text-black dark:text-white md:text-5xl lg:text-6xl">
                 Designing thoughtful digital products with code and clarity.
               </h1>
-              <p className="mt-8 max-w-2xl text-base leading-8 text-gray-600 dark:text-gray-400 md:text-lg">
+              <p className="mt-6 max-w-2xl text-base leading-8 text-gray-600 dark:text-gray-400 md:text-lg">
                 I&apos;m Amr Khaled, a Full-Stack Developer & UI/UX Designer who
                 loves building clean, scalable, and user-centered web applications
                 that solve real problems.
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-x-8 gap-y-5">
+              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-4">
                 <div className="flex items-center gap-3">
                   <MapPin className="h-5 w-5 text-black dark:text-white" />
                   <span className="text-sm text-gray-700 dark:text-gray-300">
@@ -220,7 +220,7 @@ const About = () => {
                 </div>
               </div>
 
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-6 flex flex-wrap gap-4">
                 <a
                   href="/assets/Amr-Khaled-CV.pdf"
                   download
@@ -256,7 +256,7 @@ const About = () => {
             </motion.div>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mt-6 grid gap-5 lg:grid-cols-3">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -350,28 +350,6 @@ const About = () => {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mt-6 flex flex-col gap-5 rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur dark:border-gray-800 dark:bg-black/60 lg:flex-row lg:items-center"
-          >
-            <div className="flex shrink-0 items-center gap-3 font-bold text-black dark:text-white">
-              <span className="h-2.5 w-2.5 rounded-full bg-black dark:bg-white" />
-              Tech I Work With
-            </div>
-            <div className="flex flex-wrap gap-3 lg:ml-auto">
-              {techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full border border-gray-200 px-5 py-2 text-sm text-black dark:border-gray-800 dark:text-white"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </motion.div>
         </div>
 
         {/* Timeline Section - Clean Minimalist Design */}
@@ -381,13 +359,13 @@ const About = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-32 max-w-6xl mx-auto"
+          className="mt-16 max-w-6xl mx-auto"
         >
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
           </div>
 
           {/* Year Selector - Clean Pills */}
-          <div className="flex justify-center gap-4 mb-16">
+          <div className="flex justify-center gap-4 mb-8">
             {Object.keys(timeline).map((year) => (
               <button
                 key={year}
@@ -412,9 +390,9 @@ const About = () => {
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-12 shadow-2xl">
+              <div className="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl">
                 {/* Header with Icon */}
-                <div className="flex items-start gap-6 mb-10">
+                <div className="flex items-start gap-6 mb-6">
                   <div className="w-16 h-16 bg-white dark:bg-black rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
                     <Rocket className="w-8 h-8 text-black dark:text-white" />
                   </div>
@@ -446,7 +424,7 @@ const About = () => {
 
                 {/* Progress Indicator for Current Year */}
                 {selectedYear === 2024 && (
-                  <div className="mt-10 p-6 bg-white/50 dark:bg-black/30 rounded-2xl">
+                  <div className="mt-6 p-6 bg-white/50 dark:bg-black/30 rounded-2xl">
                     <div className="flex justify-between items-center mb-3">
                       <span className="text-sm font-semibold text-gray-600 dark:text-gray-400">Current Progress</span>
                       <span className="text-sm font-bold text-black dark:text-white">75%</span>
@@ -464,7 +442,7 @@ const About = () => {
 
                 {/* Future Goals Locked State */}
                 {selectedYear === 2025 && (
-                  <div className="mt-10 p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border-2 border-dashed border-yellow-400 dark:border-yellow-600">
+                  <div className="mt-6 p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border-2 border-dashed border-yellow-400 dark:border-yellow-600">
                     <div className="flex items-center gap-3">
                       <Lock className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
                       <p className="text-yellow-800 dark:text-yellow-300 font-medium">
@@ -509,17 +487,17 @@ const About = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-32 max-w-6xl mx-auto"
+          className="mt-16 max-w-6xl mx-auto"
         >
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="text-5xl font-bold text-black dark:text-white mb-4">Beyond Code</h2>
             <p className="text-gray-500 dark:text-gray-400 text-lg">Interests, achievements, and tools that power my work</p>
           </div>
 
           {/* Interests Grid */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-bold text-black dark:text-white mb-8">Personal Interests</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mb-10">
+            <h3 className="text-2xl font-bold text-black dark:text-white mb-6">Personal Interests</h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {[
                 { icon: <Coffee className="w-10 h-10" />, title: 'Coffee Enthusiast', description: 'Fueled by creativity and caffeine' },
                 { icon: <Code2 className="w-10 h-10" />, title: 'Music Lover', description: 'Coding to the rhythm of my favorite playlists' },
@@ -545,8 +523,8 @@ const About = () => {
           </div>
 
           {/* Achievements */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-bold text-black dark:text-white mb-8">Key Achievements</h3>
+          <div className="mb-10">
+            <h3 className="text-2xl font-bold text-black dark:text-white mb-6">Key Achievements</h3>
             <div className="space-y-4">
               {[
                 { icon: <Trophy className="w-12 h-12" />, title: 'Best Developer Award', year: '2023', description: 'Recognized for exceptional performance' },
@@ -576,8 +554,8 @@ const About = () => {
           </div>
 
           {/* Tools & Technologies */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-bold text-black dark:text-white mb-8">Tools I Use Daily</h3>
+          <div className="mb-10">
+            <h3 className="text-2xl font-bold text-black dark:text-white mb-6">Tools I Use Daily</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {[
                 'VS Code', 'Git', 'Docker', 'Postman', 'Figma', 'Notion',
@@ -603,12 +581,12 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-8 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900"
+            className="p-6 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900"
           >
-            <h3 className="text-2xl font-bold mb-6 text-center text-black dark:text-white">
+            <h3 className="text-2xl font-bold mb-4 text-center text-black dark:text-white">
               Quick Facts
             </h3>
-            <div className="grid md:grid-cols-4 gap-6 text-center">
+            <div className="grid md:grid-cols-4 gap-4 text-center">
               <div>
                 <div className="text-3xl font-bold text-black dark:text-white">5+</div>
                 <div className="text-gray-600 dark:text-gray-400">Years Experience</div>
@@ -637,7 +615,7 @@ const About = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-32 text-center"
+          className="mt-16 text-center"
         >
           <h3 className="text-2xl font-bold text-black dark:text-white mb-6">Connect With Me</h3>
           <div className="flex justify-center gap-4">
