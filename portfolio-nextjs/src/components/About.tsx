@@ -1,15 +1,12 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { 
   Code2,
   Palette,
-  Database,
-  Cloud,
   Rocket,
   Trophy,
   Zap,
@@ -20,40 +17,23 @@ import {
   Twitter,
   Download,
   ArrowRight,
-  ChevronRight,
-  Sparkles,
-  Terminal,
-  Cpu,
-  GitBranch,
-  Layers,
-  Box,
-  Server,
-  Shield,
-  Braces,
-  FileCode,
   Coffee,
   Target,
-  TrendingUp,
   Clock,
   MapPin,
-  Calendar,
   Award,
   CheckCircle,
-  Circle,
   Lock,
-  ExternalLink,
-  Play,
-  Pause
+  Eye,
+  UserRound,
+  Monitor
 } from 'lucide-react'
 
 const About = () => {
   const pathname = usePathname()
   const isHomePage = pathname === '/'
   
-  const [activeSection, setActiveSection] = useState<'intro' | 'skills' | 'journey'>('intro')
   const [selectedYear, setSelectedYear] = useState<number>(2024)
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [currentSkillIndex, setCurrentSkillIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -61,28 +41,6 @@ const About = () => {
   })
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-50%'])
-
-  // Auto-rotate skills showcase
-  const skills = [
-    { name: 'React.js', level: 95, category: 'Frontend', icon: <Braces className="w-5 h-5" /> },
-    { name: 'TypeScript', level: 85, category: 'Frontend', icon: <FileCode className="w-5 h-5" /> },
-    { name: 'Node.js', level: 90, category: 'Backend', icon: <Server className="w-5 h-5" /> },
-    { name: 'Next.js', level: 90, category: 'Frontend', icon: <Layers className="w-5 h-5" /> },
-    { name: 'MongoDB', level: 85, category: 'Database', icon: <Database className="w-5 h-5" /> },
-    { name: 'Docker', level: 70, category: 'DevOps', icon: <Box className="w-5 h-5" /> },
-    { name: 'PostgreSQL', level: 75, category: 'Database', icon: <Database className="w-5 h-5" /> },
-    { name: 'AWS', level: 60, category: 'Cloud', icon: <Cloud className="w-5 h-5" /> }
-  ]
-
-  useEffect(() => {
-    if (isPlaying) {
-      const interval = setInterval(() => {
-        setCurrentSkillIndex((prev) => (prev + 1) % skills.length)
-      }, 2000)
-      return () => clearInterval(interval)
-    }
-  }, [isPlaying, skills.length])
 
   // Timeline data
   const timeline: Record<number, {
@@ -117,13 +75,67 @@ const About = () => {
     }
   }
 
-  // Stats for floating cards
-  const floatingStats = [
-    { value: '50+', label: 'Projects', delay: 0 },
-    { value: '30+', label: 'Clients', delay: 0.1 },
-    { value: '3+', label: 'Years', delay: 0.2 },
-    { value: '25+', label: 'Skills', delay: 0.3 }
+  const contactHref = isHomePage ? '#contact' : '/#contact'
+  const aboutPrinciples = [
+    {
+      title: 'Clarity',
+      description: 'I start with understanding the problem deeply.',
+      icon: Target,
+    },
+    {
+      title: 'User-first thinking',
+      description: 'I design and build with real users in mind.',
+      icon: UserRound,
+    },
+    {
+      title: 'Scalable code',
+      description: 'I write clean, maintainable, and future-ready code.',
+      icon: Code2,
+    },
+    {
+      title: 'Attention to detail',
+      description: 'I refine the small things that make a big difference.',
+      icon: Eye,
+    },
   ]
+
+  const services = [
+    {
+      title: 'Full-Stack Development',
+      description: 'Building robust, scalable web applications with modern technologies.',
+      icon: Code2,
+    },
+    {
+      title: 'UI/UX Design',
+      description: 'Designing intuitive interfaces that deliver meaningful user experiences.',
+      icon: Palette,
+    },
+    {
+      title: 'Creative Frontend',
+      description: 'Crafting interactive, responsive, and performance-focused frontend solutions.',
+      icon: Monitor,
+    },
+  ]
+
+  const journeyItems = [
+    {
+      period: '2022 - Present',
+      role: 'Freelance Full-Stack Developer',
+      description: 'Building web apps and digital products for clients worldwide.',
+    },
+    {
+      period: '2021 - 2022',
+      role: 'Frontend Developer',
+      description: 'Focused on building responsive interfaces and improving user experiences.',
+    },
+    {
+      period: '2020 - 2021',
+      role: 'Learning & Exploring',
+      description: 'Explored web technologies and built projects to sharpen my skills.',
+    },
+  ]
+
+  const techStack = ['TypeScript', 'Next.js', 'React', 'Node.js', 'Tailwind CSS', 'MongoDB', 'Figma', 'Git']
 
   return (
     <section ref={containerRef} className="relative min-h-screen bg-white dark:bg-black overflow-hidden">
@@ -156,181 +168,252 @@ const About = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* Hero Section with Split Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-          {/* Left: Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="space-y-6">
-              {/* Animated Title */}
-              <div className="overflow-hidden">
-                <motion.h1
-                  initial={{ y: 100 }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="text-6xl lg:text-8xl font-bold"
-                >
-                  <span className="block text-black dark:text-white">Amr</span>
-                  <span className="block text-gray-400">Khaled</span>
-                </motion.h1>
+        {/* About Overview */}
+        <div className="relative py-6 lg:py-12">
+          <div className="pointer-events-none absolute -left-24 top-28 hidden h-52 w-52 lg:block">
+            {[...Array(16)].map((_, i) => (
+              <span
+                key={i}
+                className="absolute rounded-full bg-black dark:bg-white"
+                style={{
+                  width: `${4 + (i % 4) * 3}px`,
+                  height: `${4 + (i % 4) * 3}px`,
+                  left: `${(i * 23) % 90}%`,
+                  top: `${(i * 31) % 95}%`,
+                  opacity: 0.15 + (i % 5) * 0.12,
+                }}
+              />
+            ))}
+          </div>
+          <div className="pointer-events-none absolute -right-16 top-0 hidden h-60 w-60 lg:block">
+            {[...Array(14)].map((_, i) => (
+              <span
+                key={i}
+                className="absolute rounded-full bg-black dark:bg-white"
+                style={{
+                  width: `${3 + (i % 5) * 2}px`,
+                  height: `${3 + (i % 5) * 2}px`,
+                  left: `${(i * 19) % 95}%`,
+                  top: `${(i * 29) % 90}%`,
+                  opacity: 0.12 + (i % 4) * 0.14,
+                }}
+              />
+            ))}
+          </div>
+
+          <div className="grid gap-10 lg:grid-cols-[1.18fr_0.92fr] lg:gap-16">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="flex flex-col justify-center"
+            >
+              <div className="mb-6 flex items-center gap-3 text-sm font-medium text-black dark:text-white">
+                <span className="h-2.5 w-2.5 rounded-full bg-black dark:bg-white" />
+                About Me
+              </div>
+              <h1 className="max-w-3xl text-4xl font-bold leading-tight text-black dark:text-white md:text-5xl lg:text-6xl">
+                Designing thoughtful digital products with code and clarity.
+              </h1>
+              <p className="mt-8 max-w-2xl text-base leading-8 text-gray-600 dark:text-gray-400 md:text-lg">
+                I&apos;m Amr Khaled, a Full-Stack Developer & UI/UX Designer who
+                loves building clean, scalable, and user-centered web applications
+                that solve real problems.
+              </p>
+
+              <div className="mt-10 flex flex-wrap gap-x-8 gap-y-5">
+                <div className="flex items-center gap-3">
+                  <MapPin className="h-5 w-5 text-black dark:text-white" />
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    Based in<br />Aden, Yemen
+                  </span>
+                </div>
+                <div className="h-10 w-px bg-gray-200 dark:bg-gray-800" />
+                <div className="flex items-center gap-3">
+                  <Clock className="h-5 w-5 text-black dark:text-white" />
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    3+ Years<br />Experience
+                  </span>
+                </div>
+                <div className="h-10 w-px bg-gray-200 dark:bg-gray-800" />
+                <div className="flex items-center gap-3">
+                  <Coffee className="h-5 w-5 text-black dark:text-white" />
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    Coffee<br />Enthusiast
+                  </span>
+                </div>
               </div>
 
-              {/* Role with typewriter effect */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="flex items-center gap-2"
-              >
-                <Terminal className="w-5 h-5 text-gray-500" />
-                <p className="text-xl text-gray-600 dark:text-gray-400 font-mono">
-                  Full-Stack Developer & UI/UX Designer
-                </p>
-              </motion.div>
-
-              {/* Bio */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed"
-              >
-                Crafting digital experiences with clean code and creative design. 
-                Specialized in modern web technologies with a passion for building 
-                scalable, user-centric applications.
-              </motion.p>
-
-              {/* Quick Stats */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9 }}
-                className="flex flex-wrap gap-6 pt-4"
-              >
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-gray-400" />
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Aden, Yemen</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-gray-400" />
-                  <span className="text-sm text-gray-600 dark:text-gray-400">3+ Years Experience</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Coffee className="w-4 h-4 text-gray-400" />
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Coffee Enthusiast</span>
-                </div>
-              </motion.div>
-
-              {/* CTA Buttons */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.1 }}
-                className="flex gap-4 pt-6"
-              >
+              <div className="mt-10 flex flex-wrap gap-4">
                 <a
                   href="/assets/Amr-Khaled-CV.pdf"
                   download
-                  className="group px-6 py-3 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium hover:scale-105 transition-transform flex items-center gap-2"
+                  className="group inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-black"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="h-4 w-4" />
                   Download CV
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
                 <Link
-                  href="/contact"
-                  className="px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                  href={contactHref}
+                  className="inline-flex items-center rounded-full border border-gray-300 px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-900"
                 >
-                  Let's Talk
+                  Let&apos;s Talk
                 </Link>
-              </motion.div>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
 
-          {/* Right: Interactive Skills Display */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
-            {/* Central Skill Display */}
-            <div className="relative w-full aspect-square max-w-md mx-auto">
-              {/* Rotating Border */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-700"
-              />
-              
-              {/* Skill Card */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSkillIndex}
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  exit={{ scale: 0, rotate: 180 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-8 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 rounded-2xl p-8 flex flex-col items-center justify-center"
-                >
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-white dark:text-black">
-                      {skills[currentSkillIndex].icon}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="rounded-2xl border border-gray-200 bg-white/80 p-8 shadow-sm backdrop-blur dark:border-gray-800 dark:bg-black/60"
+            >
+              <div className="mb-7 flex items-center gap-3 text-base font-bold text-black dark:text-white">
+                <span className="h-2.5 w-2.5 rounded-full bg-black dark:bg-white" />
+                How I Work
+              </div>
+              <div className="space-y-5">
+                {aboutPrinciples.map((item, index) => {
+                  const Icon = item.icon
+                  return (
+                    <div
+                      key={item.title}
+                      className={`flex items-center gap-5 ${
+                        index < aboutPrinciples.length - 1
+                          ? 'border-b border-gray-200 pb-5 dark:border-gray-800'
+                          : ''
+                      }`}
+                    >
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-gray-50 text-black dark:border-gray-800 dark:bg-gray-950 dark:text-white">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-black dark:text-white">{item.title}</h3>
+                        <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-black dark:text-white mb-2">
-                      {skills[currentSkillIndex].name}
-                    </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                      {skills[currentSkillIndex].category}
+                  )
+                })}
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl border border-gray-200 bg-white/80 p-8 shadow-sm backdrop-blur dark:border-gray-800 dark:bg-black/60"
+            >
+              <div className="mb-8 flex items-center gap-3 font-bold text-black dark:text-white">
+                <span className="h-2.5 w-2.5 rounded-full bg-black dark:bg-white" />
+                My Story
+              </div>
+              <p className="text-sm leading-7 text-gray-600 dark:text-gray-400">
+                My journey into tech started with curiosity and turned into a
+                passion for creating digital experiences that are both functional
+                and beautiful.
+              </p>
+              <p className="mt-6 text-sm leading-7 text-gray-600 dark:text-gray-400">
+                I enjoy turning ideas into products through clean code,
+                thoughtful UI, and a focus on detail.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="rounded-2xl border border-gray-200 bg-white/80 p-8 shadow-sm backdrop-blur dark:border-gray-800 dark:bg-black/60"
+            >
+              <div className="mb-8 flex items-center gap-3 font-bold text-black dark:text-white">
+                <span className="h-2.5 w-2.5 rounded-full bg-black dark:bg-white" />
+                What I Do
+              </div>
+              <div className="space-y-7">
+                {services.map((item) => {
+                  const Icon = item.icon
+                  return (
+                    <div key={item.title} className="flex gap-5">
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-gray-50 text-black dark:border-gray-800 dark:bg-gray-950 dark:text-white">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-black dark:text-white">{item.title}</h3>
+                        <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white/80 p-8 shadow-sm backdrop-blur dark:border-gray-800 dark:bg-black/60"
+            >
+              <div className="pointer-events-none absolute right-0 top-0 h-24 w-24 opacity-40">
+                {[...Array(10)].map((_, i) => (
+                  <span
+                    key={i}
+                    className="absolute rounded-full bg-black dark:bg-white"
+                    style={{
+                      width: `${3 + (i % 4) * 2}px`,
+                      height: `${3 + (i % 4) * 2}px`,
+                      left: `${(i * 17) % 85}%`,
+                      top: `${(i * 23) % 80}%`,
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="mb-8 flex items-center gap-3 font-bold text-black dark:text-white">
+                <span className="h-2.5 w-2.5 rounded-full bg-black dark:bg-white" />
+                My Journey
+              </div>
+              <div className="relative space-y-7 border-l border-gray-300 pl-8 dark:border-gray-700">
+                {journeyItems.map((item) => (
+                  <div key={item.period} className="relative">
+                    <span className="absolute -left-[39px] top-1 h-4 w-4 rounded-full border-2 border-white bg-black shadow dark:border-black dark:bg-white" />
+                    <p className="text-xs font-bold text-gray-700 dark:text-gray-300">{item.period}</p>
+                    <h3 className="mt-1 font-bold text-black dark:text-white">{item.role}</h3>
+                    <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                      {item.description}
                     </p>
-                    
-                    {/* Skill Level */}
-                    <div className="w-full">
-                      <div className="flex justify-between text-xs text-gray-500 mb-2">
-                        <span>Proficiency</span>
-                        <span>{skills[currentSkillIndex].level}%</span>
-                      </div>
-                      <div className="w-full h-2 bg-gray-300 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skills[currentSkillIndex].level}%` }}
-                          transition={{ duration: 1, delay: 0.5 }}
-                          className="h-full bg-gradient-to-r from-gray-600 to-black dark:from-gray-400 dark:to-white"
-                        />
-                      </div>
-                    </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
+                ))}
+              </div>
+            </motion.div>
+          </div>
 
-              {/* Play/Pause Control */}
-              <button
-                onClick={() => setIsPlaying(!isPlaying)}
-                className="absolute bottom-0 right-0 w-12 h-12 bg-black dark:bg-white text-white dark:text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform"
-              >
-                {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-              </button>
-
-              {/* Floating Stats */}
-              {floatingStats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.5 + stat.delay }}
-                  className={`absolute bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-3 shadow-lg ${
-                    index === 0 ? 'top-0 left-0' :
-                    index === 1 ? 'top-0 right-0' :
-                    index === 2 ? 'bottom-0 left-0' :
-                    'bottom-0 right-0'
-                  }`}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-6 flex flex-col gap-5 rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur dark:border-gray-800 dark:bg-black/60 lg:flex-row lg:items-center"
+          >
+            <div className="flex shrink-0 items-center gap-3 font-bold text-black dark:text-white">
+              <span className="h-2.5 w-2.5 rounded-full bg-black dark:bg-white" />
+              Tech I Work With
+            </div>
+            <div className="flex flex-wrap gap-3 lg:ml-auto">
+              {techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-gray-200 px-5 py-2 text-sm text-black dark:border-gray-800 dark:text-white"
                 >
-                  <p className="text-2xl font-bold text-black dark:text-white">{stat.value}</p>
-                  <p className="text-xs text-gray-500">{stat.label}</p>
-                </motion.div>
+                  {tech}
+                </span>
               ))}
             </div>
           </motion.div>
