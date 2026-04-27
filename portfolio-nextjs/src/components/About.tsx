@@ -569,7 +569,6 @@ const About = () => {
           >
             <h3 className="text-2xl font-bold mb-6 text-center text-black dark:text-white">
               Quick Facts
-              <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-300 uppercase tracking-wider ml-2 align-middle">Demo</span>
             </h3>
             <div className="grid md:grid-cols-4 gap-6 text-center">
               <div>

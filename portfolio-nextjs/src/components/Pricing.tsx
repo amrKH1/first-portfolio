@@ -6,7 +6,6 @@ import { useState } from 'react'
 
 const Pricing = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
-  const [isYearly, setIsYearly] = useState(true)
 
   const plans = [
     {
@@ -66,38 +65,10 @@ const Pricing = () => {
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-700">
             Choose Your Perfect Plan
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 uppercase tracking-wider ml-3 align-middle">Demo</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto text-sm transition-colors duration-700">
             Discover flexible subscription plans tailored to meet your needs. Select the plan that best fits your goals and enjoy a growing enterprise with no limits.
           </p>
-        </motion.div>
-
-        {/* Toggle for Monthly/Yearly */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex items-center justify-center gap-4 mb-12"
-        >
-          <span className={`transition-colors duration-300 ${!isYearly ? 'text-gray-900 dark:text-white font-semibold' : 'text-gray-500 dark:text-gray-400'}`}>
-            Monthly
-          </span>
-          <button 
-            onClick={() => setIsYearly(!isYearly)}
-            className="relative w-14 h-7 bg-gray-300 dark:bg-gray-800 rounded-full transition-colors duration-300"
-          >
-            <span 
-              className={`absolute top-1 w-5 h-5 bg-white dark:bg-gray-200 rounded-full transition-all duration-300 ${
-                isYearly ? 'right-1' : 'left-1'
-              }`}
-            />
-          </button>
-          <span className={`transition-colors duration-300 ${isYearly ? 'text-gray-900 dark:text-white font-semibold' : 'text-gray-500 dark:text-gray-400'}`}>
-            Yearly
-            <span className="ml-1 text-xs text-green-500 font-normal">(Save 30%)</span>
-          </span>
         </motion.div>
 
         {/* Pricing Cards */}
@@ -144,16 +115,16 @@ const Pricing = () => {
                 {/* Price */}
                 <div className="mb-6">
                   <motion.span 
-                    key={isYearly ? 'yearly' : 'monthly'}
+                    key={plan.monthlyPrice}
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                     className="text-3xl font-bold text-gray-900 dark:text-white inline-block transition-colors duration-700"
                   >
-                    {isYearly ? plan.yearlyPrice : plan.monthlyPrice}
+                    {plan.monthlyPrice}
                   </motion.span>
                   <span className="text-gray-500 dark:text-gray-500 text-sm transition-colors duration-700">
-                    /{isYearly ? 'year' : 'month'}
+                    /month
                   </span>
                 </div>
                 

@@ -184,7 +184,7 @@ const FeaturedWork = () => {
                   whileTap={{ scale: 0.95 }}
                   className="px-6 py-3 bg-black dark:bg-white text-white dark:text-black rounded-full font-semibold flex items-center gap-2 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
                 >
-                  View Live Demo
+                  View Live Site
                   <ExternalLink className="w-4 h-4" />
                 </motion.a>
                 <motion.a

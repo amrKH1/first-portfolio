@@ -109,7 +109,6 @@ const Work = () => {
             >
               <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-3">
                 My Work
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 uppercase tracking-wider ml-2 align-middle">Demo</span>
               </h2>
               <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
                 Tap on a project to explore in detail
@@ -275,7 +274,7 @@ const Work = () => {
                         rel="noopener noreferrer"
                         className="flex-1 py-3 px-4 bg-white text-black rounded-lg font-semibold text-center hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
                       >
-                        View Live Demo
+                        View Live Site
                         <ExternalLink className="w-4 h-4" />
                       </a>
                       <a
@@ -312,7 +311,6 @@ const Work = () => {
             >
               <h2 className="text-5xl xl:text-7xl font-bold text-black dark:text-white mb-4">
                 My Work
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 uppercase tracking-wider ml-3 align-middle">Demo</span>
               </h2>
               <p className="text-gray-600 dark:text-gray-400">
                 Click on a project to explore in detail
@@ -513,7 +511,7 @@ const Work = () => {
                             rel="noopener noreferrer"
                             className="flex-1 py-3 px-6 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
                           >
-                            View Live Demo
+                            View Live Site
                             <ExternalLink className="w-4 h-4" />
                           </a>
                           <a

@@ -89,7 +89,7 @@ const translations = {
     'projects.project5.description': 'Native iOS and Android fitness application featuring comprehensive workout tracking, detailed progress analytics, engaging social features, and seamless integration with wearable devices. Built using Flutter for optimal cross-platform compatibility.',
     'projects.project6.title': 'AI-Powered Chatbot Platform',
     'projects.project6.description': 'Intelligent chatbot platform with advanced natural language processing, sophisticated machine learning capabilities, and flexible multi-channel deployment. Features comprehensive admin dashboard and detailed analytics for conversation insights.',
-    'projects.liveDemo': 'Live Demo',
+    'projects.liveDemo': 'Live Site',
     'projects.github': 'GitHub',
     'projects.viewProject': 'View Project',
 
