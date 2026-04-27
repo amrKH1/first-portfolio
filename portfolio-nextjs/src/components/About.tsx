@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { 
@@ -24,8 +25,6 @@ import {
   Award,
   CheckCircle,
   Lock,
-  Eye,
-  UserRound,
   Monitor
 } from 'lucide-react'
 
@@ -76,29 +75,6 @@ const About = () => {
   }
 
   const contactHref = isHomePage ? '#contact' : '/#contact'
-  const aboutPrinciples = [
-    {
-      title: 'Clarity',
-      description: 'I start with understanding the problem deeply.',
-      icon: Target,
-    },
-    {
-      title: 'User-first thinking',
-      description: 'I design and build with real users in mind.',
-      icon: UserRound,
-    },
-    {
-      title: 'Scalable code',
-      description: 'I write clean, maintainable, and future-ready code.',
-      icon: Code2,
-    },
-    {
-      title: 'Attention to detail',
-      description: 'I refine the small things that make a big difference.',
-      icon: Eye,
-    },
-  ]
-
   const services = [
     {
       title: 'Full-Stack Development',
@@ -267,37 +243,16 @@ const About = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="rounded-2xl border border-gray-200 bg-white/80 p-8 shadow-sm backdrop-blur dark:border-gray-800 dark:bg-black/60"
+              className="relative min-h-[520px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-black"
             >
-              <div className="mb-7 flex items-center gap-3 text-base font-bold text-black dark:text-white">
-                <span className="h-2.5 w-2.5 rounded-full bg-black dark:bg-white" />
-                How I Work
-              </div>
-              <div className="space-y-5">
-                {aboutPrinciples.map((item, index) => {
-                  const Icon = item.icon
-                  return (
-                    <div
-                      key={item.title}
-                      className={`flex items-center gap-5 ${
-                        index < aboutPrinciples.length - 1
-                          ? 'border-b border-gray-200 pb-5 dark:border-gray-800'
-                          : ''
-                      }`}
-                    >
-                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-gray-50 text-black dark:border-gray-800 dark:bg-gray-950 dark:text-white">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-black dark:text-white">{item.title}</h3>
-                        <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
+              <Image
+                src="/assets/ChatGPT Image Apr 27, 2026, 11_08_19 AM.png"
+                alt="Black and white portrait of Amr Khaled"
+                fill
+                priority
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="object-contain object-center"
+              />
             </motion.div>
           </div>
 
