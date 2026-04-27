@@ -10,6 +10,8 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+const socialImage = '/assets/og-image.svg'
+
 export const metadata: Metadata = {
   title: {
     default: 'Amr Khaled - Full Stack Developer & Tech Innovator',
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
     siteName: 'Amr Khaled Portfolio',
     images: [
       {
-        url: '/opengraph-image.png',
+        url: socialImage,
         width: 1200,
         height: 630,
         alt: 'Amr Khaled - Full Stack Developer & Tech Innovator',
@@ -52,7 +54,7 @@ export const metadata: Metadata = {
     title: 'Amr Khaled - Full Stack Developer & Tech Innovator',
     description: 'Full Stack Developer specializing in React, Node.js, Next.js, and modern web technologies.',
     creator: '@amrkhaled',
-    images: ['/twitter-image.png'],
+    images: [socialImage],
   },
   robots: {
     index: true,
@@ -79,7 +81,7 @@ const personJsonLd = {
   '@type': 'Person',
   name: 'Amr Khaled',
   url: siteUrl,
-  image: `${siteUrl}/opengraph-image.png`,
+  image: `${siteUrl}${socialImage}`,
   jobTitle: 'Full Stack Developer',
   description:
     'Full Stack Developer specializing in React, Node.js, Next.js, and modern web technologies.',
