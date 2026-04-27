@@ -243,15 +243,15 @@ const About = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="relative min-h-[520px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-black"
+              className="relative min-h-[520px] lg:min-h-[560px]"
             >
               <Image
-                src="/assets/ChatGPT Image Apr 27, 2026, 11_08_19 AM.png"
+                src="/assets/amr-portrait-transparent.png"
                 alt="Black and white portrait of Amr Khaled"
                 fill
                 priority
                 sizes="(min-width: 1024px) 42vw, 100vw"
-                className="object-contain object-center"
+                className="object-contain object-center dark:brightness-125"
               />
             </motion.div>
           </div>
